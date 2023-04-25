@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "907429473506",
+    "project_id": "chatapp-eebdd",
+    "storage_bucket": "chatapp-eebdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907429473506:android:87c443e7a06b494cb1c2bb",
+        "android_client_info": {
+          "package_name": "com.jaehee.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907429473506-iiv0hg3m3th7pn9d303g5foock6ktkl0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0nU6htdug2IWcTklbT3MRV6HBuwU6H78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907429473506-iiv0hg3m3th7pn9d303g5foock6ktkl0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
