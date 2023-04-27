@@ -1,30 +1,159 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 
-import 'package:chatapp/main.dart';
+class LoginPhonePage extends StatefulWidget {
+  const LoginPhonePage({super.key});
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  @override
+  State<LoginPhonePage> createState() => _LoginPhonePageState();
+}
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+class _LoginPhonePageState extends State<LoginPhonePage> {
+  final _key = GlobalKey<FormState>();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _smsCodeController = TextEditingController();
+  bool _codeSent = false;
+  late String _verificationId;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Firebase App")),
+      body: Container(
+        padding: const EdgeInsets.all(15),
+        child: Center(
+          child: Form(
+            key: _key,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                phoneNumberInput(),
+                const SizedBox(height: 15),
+                _codeSent ? const SizedBox.shrink() : submitButton(),
+                const SizedBox(height: 15),
+                _codeSent ? smsCodeInput() : const SizedBox.shrink(),
+                const SizedBox(height: 15),
+                _codeSent ? verifyButton() : const SizedBox.shrink(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  TextFormField phoneNumberInput() {
+    return TextFormField(
+      controller: _phoneController,
+      autofocus: true,
+      validator: (val) {
+        if (val!.isEmpty) {
+          return 'The input is empty.';
+        } else {
+          return null;
+        }
+      },
+      keyboardType: TextInputType.phone,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: 'Input your phone number.',
+        labelText: 'Phone Number',
+        labelStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  TextFormField smsCodeInput() {
+    return TextFormField(
+      controller: _smsCodeController,
+      autofocus: true,
+      validator: (val) {
+        if (val!.isEmpty) {
+          return 'The input is empty.';
+        } else {
+          return null;
+        }
+      },
+      keyboardType: TextInputType.number,
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: 'Input your sms code.',
+        labelText: 'SMS Code',
+        labelStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  ElevatedButton submitButton() {
+    return ElevatedButton(
+      onPressed: () async {
+        if (_key.currentState!.validate()) {
+          FirebaseAuth auth = FirebaseAuth.instance;
+          await auth.verifyPhoneNumber(
+            phoneNumber: _phoneController.text,
+            verificationCompleted: (PhoneAuthCredential credential) async {
+              // Android only
+              await auth
+                  .signInWithCredential(credential)
+                  .then((_) => Navigator.pushNamed(context, "/"));
+            },
+            verificationFailed: (FirebaseAuthException e) {
+              if (e.code == 'invalid-phone-number') {
+                print("The provided phone number is not valid.");
+              }
+            },
+            codeSent: (String verificationId, forceResendingToken) async {
+              String smsCode = _smsCodeController.text;
+              setState(() {
+                _codeSent = true;
+                _verificationId = verificationId;
+              });
+            },
+            codeAutoRetrievalTimeout: (verificationId) {
+              print("handling code auto retrieval timeout");
+            },
+          );
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: const Text(
+          "Send SMS Code",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ),
+    );
+  }
+
+  ElevatedButton verifyButton() {
+    return ElevatedButton(
+      onPressed: () async {
+        FirebaseAuth auth = FirebaseAuth.instance;
+
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: _verificationId, smsCode: _smsCodeController.text);
+
+        await auth
+            .signInWithCredential(credential)
+            .then((_) => Navigator.pushNamed(context, "/"));
+      },
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: const Text(
+          "Verify",
+          style: TextStyle(
+            fontSize: 18,
+          ),
+        ),
+      ),
+    );
+  }
 }

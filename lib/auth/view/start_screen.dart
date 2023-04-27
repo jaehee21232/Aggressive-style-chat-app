@@ -33,7 +33,8 @@ class StartScreen extends ConsumerWidget {
                   );
                   ref.read(loginProvider.notifier).update((state) => state + 1);
                 } else if (state >= 30) {
-                  Navigator.pushNamed(context, "/registerscreen");
+                  ref.read(loginProvider.notifier).update((state) => state = 0);
+                  Navigator.pushNamed(context, "/numberregisterscreen");
                 } else {
                   ref.read(loginProvider.notifier).update((state) => state + 1);
                 }

@@ -1,13 +1,27 @@
 import 'package:chatapp/auth/component/number_detail.dart';
+import 'package:chatapp/auth/component/sms_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/color.dart';
 import 'package:chatapp/common/const/style/font_style.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class NumberRegisterScreen extends ConsumerStatefulWidget {
+  const NumberRegisterScreen({super.key});
+
+  @override
+  _NumberRegisterScreenState createState() => _NumberRegisterScreenState();
+}
+
+class _NumberRegisterScreenState extends ConsumerState<NumberRegisterScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +64,9 @@ class NumberSlider extends ConsumerWidget {
 
     return Column(
       children: [
+        const SizedBox(
+          height: 16,
+        ),
         Text(
           "전화번호",
           style: styleButtonText,
@@ -67,7 +84,13 @@ class NumberSlider extends ConsumerWidget {
             ref.read(numberProvider.notifier).update((state) => state = value);
           },
         ),
-        _NumberDetailButtonBox()
+        _NumberDetailButtonBox(),
+        const SizedBox(
+          height: 16,
+        ),
+        SMSButton(
+          state: state,
+        ),
       ],
     );
   }

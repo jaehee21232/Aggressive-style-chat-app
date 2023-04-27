@@ -1,10 +1,18 @@
-import 'package:chatapp/auth/view/register_screen.dart';
+import 'package:chatapp/auth/view/name_register_screen.dart';
+import 'package:chatapp/auth/view/number_register_screen.dart';
 import 'package:chatapp/auth/view/start_screen.dart';
 import 'package:chatapp/common/const/style/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -21,7 +29,8 @@ class MyApp extends StatelessWidget {
         theme: whiteTheme,
         home: StartScreen(),
         routes: {
-          "/registerscreen": (context) => const RegisterScreen(),
+          "/numberregisterscreen": (context) => const NumberRegisterScreen(),
+          "/nameregisterscreen": (context) => const NameRegisterScreen(),
         },
       ),
     );
