@@ -1,13 +1,11 @@
 import 'package:chatapp/auth/component/number_detail.dart';
-import 'package:chatapp/auth/component/sms_button.dart';
+import 'package:chatapp/auth/component/submit_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/color.dart';
 import 'package:chatapp/common/const/style/font_style.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class NumberRegisterScreen extends ConsumerStatefulWidget {
   const NumberRegisterScreen({super.key});
@@ -88,9 +86,14 @@ class NumberSlider extends ConsumerWidget {
         const SizedBox(
           height: 16,
         ),
-        SMSButton(
-          state: state,
-        ),
+        SubmitButton(
+            onPressed: () {
+              Navigator.of(context).popAndPushNamed("/nameregisterscreen");
+            },
+            child: Text(
+              "확인",
+              style: styleButtonText,
+            ))
       ],
     );
   }

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "907429473506-k19ecp58mb60anennoplbi5olorq4m7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jaehee.chatapp",
+            "certificate_hash": "60e57c2b22355b4089c90ffa695e1b14dd7c1980"
+          }
+        },
+        {
           "client_id": "907429473506-iiv0hg3m3th7pn9d303g5foock6ktkl0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "907429473506-iiv0hg3m3th7pn9d303g5foock6ktkl0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "907429473506-5tmvpdvlf50j7mus3ls0hj15tphi2c0q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jaehee.chatapp"
+              }
             }
           ]
         }

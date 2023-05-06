@@ -38,6 +38,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_riverpod: ^2.3.6
   firebase_auth: ^4.4.2
+  korea_regexp: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '907429473506',
     projectId: 'chatapp-eebdd',
     storageBucket: 'chatapp-eebdd.appspot.com',
+    androidClientId: '907429473506-k19ecp58mb60anennoplbi5olorq4m7f.apps.googleusercontent.com',
     iosClientId: '907429473506-5tmvpdvlf50j7mus3ls0hj15tphi2c0q.apps.googleusercontent.com',
     iosBundleId: 'com.jaehee.chatapp',
   );
@@ -77,6 +78,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '907429473506',
     projectId: 'chatapp-eebdd',
     storageBucket: 'chatapp-eebdd.appspot.com',
+    androidClientId: '907429473506-k19ecp58mb60anennoplbi5olorq4m7f.apps.googleusercontent.com',
     iosClientId: '907429473506-tienvgbpfipk3tq5pj8ofk86c145862u.apps.googleusercontent.com',
     iosBundleId: 'com.example.chatapp.RunnerTests',
   );
