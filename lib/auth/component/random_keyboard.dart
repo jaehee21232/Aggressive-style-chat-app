@@ -161,7 +161,7 @@ class _KeyboardKey extends ConsumerWidget {
           child: Center(
         child: Text(
           label.toString(),
-          style: styleDialogText,
+          style: titleText,
         ),
       )),
     );
