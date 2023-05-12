@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:chatapp/auth/component/text_choice_container.dart';
 import 'package:korea_regexp/korea_regexp.dart';
 import 'package:chatapp/auth/component/submit_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
@@ -180,33 +181,9 @@ class NameHint extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 0 ? Colors.red : Colors.white)),
-          child: Text(
-            text[0],
-            style: titleText,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 1 ? Colors.red : Colors.white)),
-          child: Text(
-            text[1],
-            style: titleText,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 2 ? Colors.red : Colors.white)),
-          child: Text(
-            text[2],
-            style: titleText,
-          ),
-        ),
+        ChoiceContainer(count: count, text: text[0]),
+        ChoiceContainer(count: count, text: text[1]),
+        ChoiceContainer(count: count, text: text[2]),
       ],
     );
   }
@@ -224,33 +201,9 @@ class NameText extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 0 ? Colors.red : Colors.white)),
-          child: Text(
-            text[0],
-            style: titleText,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 1 ? Colors.red : Colors.white)),
-          child: Text(
-            text[1],
-            style: titleText,
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border.all(color: count == 2 ? Colors.red : Colors.white)),
-          child: Text(
-            text[2],
-            style: titleText,
-          ),
-        ),
+        ChoiceContainer(count: count, text: text[0]),
+        ChoiceContainer(count: count, text: text[1]),
+        ChoiceContainer(count: count, text: text[2]),
       ],
     );
   }

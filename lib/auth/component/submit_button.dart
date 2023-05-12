@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 class SubmitButton extends StatelessWidget {
   final onPressed;
   final child;
+
   const SubmitButton({super.key, required this.onPressed, required this.child});
 
   @override
@@ -13,6 +14,7 @@ class SubmitButton extends StatelessWidget {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: black,
+          elevation: 0,
         ),
         onPressed: onPressed,
         child: child);
