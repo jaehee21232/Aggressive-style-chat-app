@@ -61,7 +61,7 @@ class StartScreen extends ConsumerWidget {
 
   Future<String> checkLogin() async {
     final loginData = await storage.read(key: "login");
-    if (loginData == null) {
+    if (loginData == "false") {
       return "회원가입";
     } else {
       return "로그인";
