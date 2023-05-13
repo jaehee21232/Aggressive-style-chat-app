@@ -38,3 +38,9 @@ final koreanTextList = [
   "D",
   "C"
 ];
+
+siginInWithDevice(double number, String name) async {
+  await storage.write(key: "login", value: "true");
+  await storage.write(key: "number", value: number.toInt().toString());
+  await storage.write(key: "name", value: name);
+}

@@ -2,16 +2,21 @@ import 'dart:math';
 
 import 'package:chatapp/auth/component/random_keyboard.dart';
 import 'package:chatapp/auth/component/submit_button.dart';
+import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/color.dart';
+import 'package:chatapp/common/const/data.dart';
 import 'package:chatapp/common/const/style/font_style.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NameRegisterScreen extends StatelessWidget {
+class NameRegisterScreen extends ConsumerWidget {
   const NameRegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(nameTextProvider);
+    final number = ref.watch(numberProvider);
     return DefaultLayout(
         appBar: AppBar(
           title: Text(
@@ -37,30 +42,26 @@ class NameRegisterScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                           title: Text(
-                            "이름이 맞나요?",
+                            "이름이 ${name.join()}가 맞나요?",
                             style: styleDialogText,
                             textAlign: TextAlign.center,
                           ),
                           actionsAlignment: MainAxisAlignment.center,
                           actions: [
-                            ElevatedButton(
+                            SubmitButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  siginInWithDevice(number, name.join());
                                 },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: black, elevation: 0),
                                 child: Text(
                                   "네",
                                 )),
-                            ElevatedButton(
+                            SubmitButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: black, elevation: 0),
                                 child: Text(
                                   "아니요",
-                                ))
+                                )),
                           ],
                         );
                       },
