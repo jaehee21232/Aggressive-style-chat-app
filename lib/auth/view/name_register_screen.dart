@@ -5,7 +5,7 @@ import 'package:chatapp/auth/component/submit_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/color.dart';
 import 'package:chatapp/common/const/data.dart';
-import 'package:chatapp/common/const/style/font_style.dart';
+import 'package:chatapp/common/const/font_style.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,6 +51,8 @@ class NameRegisterScreen extends ConsumerWidget {
                             SubmitButton(
                                 onPressed: () {
                                   siginInWithDevice(number, name.join());
+                                  Navigator.popAndPushNamed(
+                                      context, "/chattingscreen");
                                 },
                                 child: Text(
                                   "네",

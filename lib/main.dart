@@ -1,6 +1,7 @@
 import 'package:chatapp/auth/view/name_register_screen.dart';
 import 'package:chatapp/auth/view/number_register_screen.dart';
 import 'package:chatapp/auth/view/start_screen.dart';
+import 'package:chatapp/chatting/view/chatting_screen.dart';
 import 'package:chatapp/common/const/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/numberregisterscreen": (context) => const NumberRegisterScreen(),
           "/nameregisterscreen": (context) => const NameRegisterScreen(),
+          "/chattingscreen": (context) => const ChatScreen(),
         },
       ),
     );
