@@ -181,9 +181,33 @@ class NameHint extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ChoiceContainer(count: count, text: text[0]),
-        ChoiceContainer(count: count, text: text[1]),
-        ChoiceContainer(count: count, text: text[2]),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 0 ? Colors.red : Colors.white)),
+          child: Text(
+            text[0],
+            style: titleText,
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 1 ? Colors.red : Colors.white)),
+          child: Text(
+            text[1],
+            style: titleText,
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 2 ? Colors.red : Colors.white)),
+          child: Text(
+            text[2],
+            style: titleText,
+          ),
+        ),
       ],
     );
   }
@@ -201,9 +225,33 @@ class NameText extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ChoiceContainer(count: count, text: text[0]),
-        ChoiceContainer(count: count, text: text[1]),
-        ChoiceContainer(count: count, text: text[2]),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 0 ? Colors.red : Colors.white)),
+          child: Text(
+            text[0],
+            style: titleText,
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 1 ? Colors.red : Colors.white)),
+          child: Text(
+            text[1],
+            style: titleText,
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border:
+                  Border.all(color: count == 2 ? Colors.red : Colors.white)),
+          child: Text(
+            text[2],
+            style: titleText,
+          ),
+        ),
       ],
     );
   }
@@ -219,6 +267,9 @@ class SubmitTextButton extends ConsumerWidget {
     final hint = ref.watch(nameHintProvider);
     return SubmitButton(
         onPressed: () {
+          ref
+              .read(nameHintProvider.notifier)
+              .update((state) => state = [" ", " ", " "]);
           try {
             if (now == 0) {
               ref.read(nameTextProvider.notifier).update((state) => state = [
