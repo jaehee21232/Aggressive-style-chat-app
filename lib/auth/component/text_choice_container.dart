@@ -1,4 +1,4 @@
-import 'package:chatapp/common/const/style/font_style.dart';
+import 'package:chatapp/common/const/font_style.dart';
 import 'package:flutter/material.dart';
 
 class ChoiceContainer extends StatelessWidget {

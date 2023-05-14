@@ -1,5 +1,5 @@
 import 'package:chatapp/common/const/color.dart';
-import 'package:chatapp/common/const/style/font_style.dart';
+import 'package:chatapp/common/const/font_style.dart';
 import 'package:flutter/material.dart';
 
 //로그인 시도 시 누르기

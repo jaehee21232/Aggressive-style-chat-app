@@ -1,7 +1,7 @@
 import 'package:chatapp/auth/view/name_register_screen.dart';
 import 'package:chatapp/auth/view/number_register_screen.dart';
 import 'package:chatapp/auth/view/start_screen.dart';
-import 'package:chatapp/common/const/style/theme.dart';
+import 'package:chatapp/common/const/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

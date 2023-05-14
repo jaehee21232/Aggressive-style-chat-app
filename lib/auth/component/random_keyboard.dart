@@ -5,7 +5,7 @@ import 'package:korea_regexp/korea_regexp.dart';
 import 'package:chatapp/auth/component/submit_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/data.dart';
-import 'package:chatapp/common/const/style/font_style.dart';
+import 'package:chatapp/common/const/font_style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
