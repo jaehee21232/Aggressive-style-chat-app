@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:chatapp/auth/component/text_choice_container.dart';
 import 'package:korea_regexp/korea_regexp.dart';
 import 'package:chatapp/auth/component/submit_button.dart';
 import 'package:chatapp/auth/riverpod/state_provider.dart';
 import 'package:chatapp/common/const/data.dart';
 import 'package:chatapp/common/const/font_style.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,7 +56,6 @@ class _RandomKeyBoardState extends State<RandomKeyBoard> {
       list[i] = list[j];
       list[j] = temp;
     }
-    print(list);
     List<List<dynamic>> nestedList = List.generate(5, (index) => []);
     for (int i = 0; i < list.length; i++) {
       nestedList[i % 5].add(list[i]);

@@ -39,6 +39,7 @@ dependencies:
   flutter_riverpod: ^2.3.6
   firebase_auth: ^4.4.2
   korea_regexp: ^1.0.1
+  cloud_firestore: ^4.7.0
 
 dev_dependencies:
   flutter_test:

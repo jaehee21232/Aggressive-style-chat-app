@@ -20,8 +20,13 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        body: InputWidget(
-      controller: controller,
+        body: Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        InputWidget(
+          controller: controller,
+        ),
+      ],
     ));
   }
 }

@@ -1,8 +1,12 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
+import 'package:chatapp/chatting/model/message_model.dart';
+import 'package:chatapp/common/const/data.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class InputWidget extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   const InputWidget({super.key, required this.controller});
 
   @override
@@ -25,7 +29,10 @@ class InputWidget extends StatelessWidget {
             width: 10,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              _onPressedSendButton();
+              print(controller.text);
+            },
             child: Container(
               decoration: BoxDecoration(),
               width: 40,
@@ -36,5 +43,25 @@ class InputWidget extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  void _onPressedSendButton() async {
+    try {
+      final name = storage.read(key: "name");
+      MessageModel messageModel = MessageModel(
+        message: controller.text,
+        date: DateTime.now().toString(),
+        name: name,
+      );
+
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore
+          .collection("chatting")
+          .doc("tes")
+          .set(messageModel.toMap());
+    } catch (ex) {
+      print(ex);
+      log('error', error: ex.toString(), stackTrace: StackTrace.current);
+    }
   }
 }

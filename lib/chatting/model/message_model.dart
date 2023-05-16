@@ -15,4 +15,13 @@ class MessageModel {
     return MessageModel(
         date: date, name: name, message: message, phonenumber: phonenumber);
   }
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> data = {};
+    data[name] = name;
+    data[message] = message;
+    data[phonenumber] = phonenumber;
+    data[date] = date;
+    return data;
+  }
 }

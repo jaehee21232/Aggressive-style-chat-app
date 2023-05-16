@@ -7,6 +7,7 @@ import 'package:chatapp/common/const/color.dart';
 import 'package:chatapp/common/const/data.dart';
 import 'package:chatapp/common/const/font_style.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
