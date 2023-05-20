@@ -1,4 +1,5 @@
 import 'package:chatapp/chatting/component/input_widget.dart';
+import 'package:chatapp/common/const/data.dart';
 import 'package:chatapp/common/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +21,32 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        body: Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        InputWidget(
-          controller: controller,
-        ),
-      ],
+        body: FutureBuilder(
+      future: dataread(),
+      builder: <String>(context, snapshot) {
+        if (snapshot.hasData) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              InputWidget(
+                controller: controller,
+                name: snapshot.data[0],
+                phonenumber: snapshot.data[1],
+              ),
+            ],
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     ));
+  }
+
+  Future dataread() async {
+    final name = await storage.read(key: "name");
+    final phonenumber = await storage.read(key: "number");
+    return [name, phonenumber];
   }
 }
