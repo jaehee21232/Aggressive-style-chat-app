@@ -17,41 +17,41 @@ class InputWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
+      margin: EdgeInsets.only(top: 8),
+      padding: EdgeInsets.all(8),
       height: 60,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Row(children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "내용을 입력하세요..",
-              ),
-              controller: controller,
-              keyboardType: TextInputType.multiline,
+      child: Row(children: [
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: "내용을 입력하세요..",
             ),
+            controller: controller,
+            keyboardType: TextInputType.multiline,
           ),
-          SizedBox(
-            width: 10,
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        InkWell(
+          onTap: () {
+            _onPressedSendButton(name, phonenumber);
+            controller.text = "";
+          },
+          child: Container(
+            decoration: BoxDecoration(),
+            width: 40,
+            height: 40,
+            child: Center(child: Icon(Icons.send)),
           ),
-          InkWell(
-            onTap: () {
-              _onPressedSendButton(name, phonenumber);
-            },
-            child: Container(
-              decoration: BoxDecoration(),
-              width: 40,
-              height: 40,
-              child: Center(child: Icon(Icons.send)),
-            ),
-          )
-        ]),
-      ),
+        )
+      ]),
     );
   }
 
   void _onPressedSendButton(String name, String phonenumber) async {
     try {
-      MessageModel messageModel = MessageModel.fromMap(
+      MessageModel messageModel = MessageModel.fromJson(
           message: controller.text,
           date: DateTime.now().toString(),
           name: name,
