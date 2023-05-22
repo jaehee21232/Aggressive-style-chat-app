@@ -20,40 +20,41 @@ class StartScreen extends ConsumerWidget {
         children: [
           const _LogoText(),
           const _LoginNumber(),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: black),
-              onPressed: () {
-                if (state == 0) {
-                  showDialog(
-                    context: context,
-                    builder: (context) => LoginDialog(),
-                  );
-                  ref.read(loginProvider.notifier).update((state) => state + 1);
-                } else if (state >= 30) {
-                  ref.read(loginProvider.notifier).update((state) => state = 0);
-                  Navigator.pushNamed(context, "/numberregisterscreen");
-                } else {
-                  ref.read(loginProvider.notifier).update((state) => state + 1);
-                }
-              },
-              child: FutureBuilder(
-                future: checkLogin(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Text("");
-                  } else {
-                    return Text(
-                      snapshot.data.toString(),
-                      style: styleButtonText,
-                    );
-                  }
-                },
-              ),
+          FutureBuilder(
+            future: checkLogin(),
+            builder: (context, snapshot) => SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: black),
+                  onPressed: () {
+                    if (state == 0) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => LoginDialog(),
+                      );
+                      ref
+                          .read(loginProvider.notifier)
+                          .update((state) => state + 1);
+                    } else if (state >= 30) {
+                      ref
+                          .read(loginProvider.notifier)
+                          .update((state) => state = 0);
+                      Navigator.pushNamed(context, "/numberregisterscreen");
+                    } else {
+                      ref
+                          .read(loginProvider.notifier)
+                          .update((state) => state + 1);
+                    }
+                  },
+                  child: !snapshot.hasData
+                      ? Text("")
+                      : Text(
+                          snapshot.data.toString(),
+                          style: styleButtonText,
+                        )),
             ),
-          )
+          ),
         ],
       ),
     ));

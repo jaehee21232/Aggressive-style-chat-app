@@ -14,5 +14,11 @@ TextStyle titleText =
 TextStyle hintText =
     TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: grey);
 
-TextStyle errorText =
-    TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.red);
+TextStyle errorText = const TextStyle(
+    fontSize: 16, fontWeight: FontWeight.w500, color: Colors.red);
+
+TextStyle nameText = const TextStyle(
+    fontSize: 13, fontWeight: FontWeight.w500, color: Colors.black);
+
+TextStyle messageText = const TextStyle(
+    fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black);

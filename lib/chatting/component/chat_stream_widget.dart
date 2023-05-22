@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:chatapp/chatting/component/input_widget.dart';
 import 'package:chatapp/chatting/model/message_model.dart';
+import 'package:chatapp/common/const/font_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -28,15 +29,26 @@ class StreamMessages extends StatelessWidget {
             shrinkWrap: true,
             itemCount: messages.length,
             itemBuilder: (context, index) {
-              print("dasdkmawjdfkawdjawd");
-              print(messages[index].message);
-              print("dasdkmawjdfkawdjawd");
               return ListTile(
                 title: Text(
                   messages[index].name,
-                  style: TextStyle(color: Colors.black),
                 ),
-                subtitle: Text(messages[index].message),
+                subtitle: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        messages[index].message,
+                        style: messageText,
+                      ),
+                      Text(
+                        "${messages[index].date.split(" ")[0].substring(5)} ${messages[index].date.split(" ")[1].substring(0, 5)}",
+                        style: TextStyle(fontSize: 10),
+                      )
+                    ],
+                  ),
+                ),
               );
             },
           );

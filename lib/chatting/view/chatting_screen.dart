@@ -25,7 +25,11 @@ class _ChatScreenState extends State<ChatScreen> {
       body: FutureBuilder(
         future: dataread(),
         builder: <String>(context, snapshot) {
-          if (snapshot.hasData) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
             return Container(
               child: Column(
                 children: [
@@ -43,10 +47,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ],
               ),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
             );
           }
         },
